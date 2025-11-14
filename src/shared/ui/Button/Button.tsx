@@ -1,19 +1,7 @@
 import { type FC, useRef } from "react";
-import {
-  type GestureResponderEvent,
-  Pressable,
-  Text,
-  Animated,
-} from "react-native";
-import { StyleSheet } from "react-native";
-
-type Variant = "primary" | "secondary" | "danger";
-
-interface ButtonProps {
-  onPress: null | ((event: GestureResponderEvent) => void) | undefined;
-  children: React.ReactNode;
-  variant?: Variant;
-}
+import { Pressable, Text, Animated } from "react-native";
+import { type ButtonProps, type Variant } from "./types";
+import { styles } from "./styles";
 
 type Styles = typeof styles;
 
@@ -86,33 +74,3 @@ export const Button: FC<ButtonProps> = ({
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 28,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    justifyContent: "center",
-    alignItems: "center",
-    elevation: 2,
-    overflow: "hidden",
-  },
-  buttonPrimary: {
-    backgroundColor: "#72063c",
-  },
-  textPrimary: {
-    color: "white",
-  },
-  buttonSecondary: {
-    backgroundColor: "green", // - change to theme color
-  },
-  textSecondary: {
-    color: "white",
-  },
-  buttonDanger: {
-    backgroundColor: "red", // - change to theme color
-  },
-  textDanger: {
-    color: "white",
-  },
-});

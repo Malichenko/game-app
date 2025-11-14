@@ -3,13 +3,14 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { GameStartScreen } from "@screens/game-start";
 import { LinearGradient } from "expo-linear-gradient";
+import { palette } from "@shared/config/theme";
 
 export const App = (): React.ReactElement => {
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
       <LinearGradient
-        colors={["#4e0329", "#ddb52f"]}
+        colors={[palette.primary[80], palette.accent[50]]}
         style={[styles.fullScreen]}
       >
         <ImageBackground

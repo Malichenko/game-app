@@ -9,4 +9,4 @@ export const spacing = {
   x8: 32, // 8×base
   x9: 36, // 9×base
   x10: 40, // 10×base
-};
+} as const;

@@ -1,31 +1,32 @@
 import { StyleSheet } from "react-native";
+import { palette, spacing } from "@shared/config/theme";
 
 export const styles = StyleSheet.create({
   button: {
     borderRadius: 28,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: spacing.x2,
+    paddingHorizontal: spacing.x4,
     justifyContent: "center",
     alignItems: "center",
     elevation: 2,
     overflow: "hidden",
   },
   buttonPrimary: {
-    backgroundColor: "#72063c",
+    backgroundColor: palette.primary[60],
   },
   textPrimary: {
-    color: "white",
+    color: palette.neutral[10],
   },
   buttonSecondary: {
-    backgroundColor: "green",
+    backgroundColor: palette.secondary[60],
   },
   textSecondary: {
-    color: "white",
+    color: palette.neutral[10],
   },
   buttonDanger: {
-    backgroundColor: "red",
+    backgroundColor: palette.danger[60],
   },
   textDanger: {
-    color: "white",
+    color: palette.neutral[10],
   },
 });

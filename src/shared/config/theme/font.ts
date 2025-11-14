@@ -22,4 +22,4 @@ export const lineHeight = {
   x8: 40,
   x9: 44,
   x10: 48,
-};
+} as const;

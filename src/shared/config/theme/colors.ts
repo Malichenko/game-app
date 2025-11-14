@@ -68,4 +68,4 @@ export const palette = {
     black: "#000000",
     ripple: "rgba(0,0,0,0.15)",
   },
-};
+} as const;

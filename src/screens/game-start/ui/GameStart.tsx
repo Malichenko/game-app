@@ -1,12 +1,13 @@
 import { View, TextInput, StyleSheet, Platform } from "react-native";
 import { Button } from "@shared/ui";
+import { palette, spacing, fontSize } from "@shared/config/theme";
 
 const GameStartScreen = (): React.ReactElement => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.inputNUmber}
+          style={styles.inputNumber}
           maxLength={2}
           keyboardType="number-pad"
           autoCorrect={false}
@@ -31,28 +32,28 @@ export default GameStartScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: spacing.x4,
   },
   inputContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#3b021f",
-    padding: 16,
+    backgroundColor: palette.primary[90],
+    padding: spacing.x4,
     borderRadius: 8,
     elevation: 12,
-    shadowColor: "black",
+    shadowColor: palette.shadow.black,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 6,
   },
-  inputNUmber: {
+  inputNumber: {
     height: 50,
     width: 50,
-    fontSize: 32,
+    fontSize: fontSize.x8,
     borderBottomWidth: 2,
-    borderBottomColor: "#ddb52f",
-    color: "#ddb52f",
-    marginVertical: 8,
+    borderBottomColor: palette.accent[50],
+    color: palette.accent[50],
+    marginVertical: spacing.x2,
     fontWeight: "bold",
     textAlign: "center",
     ...Platform.select({
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     }),
   },
   buttonsContainer: {
-    gap: 4,
+    gap: spacing.x1,
     flexDirection: "row",
     justifyContent: "center",
   },
