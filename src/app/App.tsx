@@ -1,33 +1,37 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, ImageBackground } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { GameStartScreen } from "@screens/game-start";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const App = (): React.ReactElement => {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.content}>
-          <Text style={styles.text}>
-            Open up App.tsx to start working on your app!
-          </Text>
-          <StatusBar style="auto" />
-        </View>
-      </SafeAreaView>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={["#4e0329", "#ddb52f"]}
+        style={[styles.fullScreen]}
+      >
+        <ImageBackground
+          source={require("@shared/assets/background.png")}
+          style={[styles.fullScreen]}
+          resizeMode="cover"
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={[styles.fullScreen]}>
+            <GameStartScreen />
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
     </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  fullScreen: {
     flex: 1,
   },
-  content: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 16,
+  backgroundImage: {
+    opacity: 0.15,
   },
 });
