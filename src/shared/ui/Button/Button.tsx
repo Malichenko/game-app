@@ -1,48 +1,8 @@
 import { type FC, useRef } from "react";
 import { Pressable, Text, Animated } from "react-native";
-import { type ButtonProps, type Variant } from "./types";
-import { styles } from "./styles";
-
-type Styles = typeof styles;
-
-type ButtonStyle =
-  | Styles["buttonPrimary"]
-  | Styles["buttonSecondary"]
-  | Styles["buttonDanger"];
-type TextStyle =
-  | Styles["textPrimary"]
-  | Styles["textSecondary"]
-  | Styles["textDanger"];
-
-const getButtonStyle = (variant: Variant): ButtonStyle => {
-  switch (variant) {
-    case "primary":
-      return styles.buttonPrimary;
-    case "secondary":
-      return styles.buttonSecondary;
-    case "danger":
-      return styles.buttonDanger;
-    default: {
-      const exhaustiveCheck: never = variant;
-      throw new Error(`Unhandled variant: ${exhaustiveCheck}`);
-    }
-  }
-};
-
-const getTextStyle = (variant: Variant): TextStyle => {
-  switch (variant) {
-    case "primary":
-      return styles.textPrimary;
-    case "secondary":
-      return styles.textSecondary;
-    case "danger":
-      return styles.textDanger;
-    default: {
-      const exhaustiveCheck: never = variant;
-      throw new Error(`Unhandled variant: ${exhaustiveCheck}`);
-    }
-  }
-};
+import { type ButtonProps } from "./Button.types";
+import { styles } from "./Button.styles";
+import { getButtonStyle, getTextStyle } from "./button.variants";
 
 export const Button: FC<ButtonProps> = ({
   onPress,
