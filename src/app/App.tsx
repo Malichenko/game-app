@@ -1,26 +1,32 @@
-import { StyleSheet, ImageBackground } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
-import { GameStartScreen } from "@screens/game-start";
-import { LinearGradient } from "expo-linear-gradient";
-import { palette } from "@shared/config/theme";
+import { ImageBackground, StyleSheet } from 'react-native';
+
+import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
+
+import theme from '@shared/config/theme';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+
+import { Router } from './Router';
+import { AppProvider } from './providers';
 
 export const App = (): React.ReactElement => {
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
       <LinearGradient
-        colors={[palette.primary[80], palette.accent[50]]}
+        colors={[theme.palette.primary[80], theme.palette.accent[50]]}
         style={[styles.fullScreen]}
       >
         <ImageBackground
-          source={require("@shared/assets/background.png")}
+          source={require('@shared/assets/background.png')}
           style={[styles.fullScreen]}
           resizeMode="cover"
           imageStyle={styles.backgroundImage}
         >
           <SafeAreaView style={[styles.fullScreen]}>
-            <GameStartScreen />
+            <AppProvider>
+              <Router />
+            </AppProvider>
           </SafeAreaView>
         </ImageBackground>
       </LinearGradient>

@@ -79,11 +79,10 @@ npm run type-check
 
 ```typescript
 // ✅ GOOD: Lower layer imports
-import { Button } from "@shared/ui";
-import { useUserStore } from "@entities/user";
-
+import { useUserStore } from '@entities/user';
 // ❌ BAD: Upper layer imports (will be caught by ESLint)
-import { UserScreen } from "@screens/user";
+import { UserScreen } from '@screens/user';
+import { Button } from '@shared/ui';
 ```
 
 ### File Naming Conventions

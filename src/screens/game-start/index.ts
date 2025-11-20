@@ -1,1 +1,1 @@
-export { GameStartScreen } from "./ui";
+export { GameStartScreen } from './ui';

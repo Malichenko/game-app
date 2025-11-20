@@ -1,13 +1,15 @@
-import { type FC, useRef } from "react";
-import { Pressable, Text, Animated } from "react-native";
-import { type ButtonProps } from "./Button.types";
-import { styles } from "./Button.styles";
-import { getButtonStyle, getTextStyle } from "./button.variants";
+import { type FC, useRef } from 'react';
+
+import { Animated, Pressable, Text } from 'react-native';
+
+import { styles } from './Button.styles';
+import { type ButtonProps } from './Button.types';
+import { getButtonStyle, getTextStyle } from './Button.variants';
 
 export const Button: FC<ButtonProps> = ({
   onPress,
   children,
-  variant = "primary",
+  variant = 'primary',
 }) => {
   const opacity = useRef(new Animated.Value(1)).current;
 

@@ -1,6 +1,7 @@
-import { styles } from "./Button.styles";
-import type { Variant } from "./Button.types";
-import { type ViewStyle, type TextStyle } from "react-native";
+import { type TextStyle, type ViewStyle } from 'react-native';
+
+import { styles } from './Button.styles';
+import type { Variant } from './Button.types';
 
 const BUTTON_MAP: Record<Variant, ViewStyle> = {
   primary: styles.buttonPrimary,
