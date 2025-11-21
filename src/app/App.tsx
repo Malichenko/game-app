@@ -7,7 +7,6 @@ import theme from '@shared/config/theme';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Router } from './Router';
-import { AppProvider } from './providers';
 
 export const App = (): React.ReactElement => {
   return (
@@ -24,9 +23,7 @@ export const App = (): React.ReactElement => {
           imageStyle={styles.backgroundImage}
         >
           <SafeAreaView style={[styles.fullScreen]}>
-            <AppProvider>
-              <Router />
-            </AppProvider>
+            <Router />
           </SafeAreaView>
         </ImageBackground>
       </LinearGradient>

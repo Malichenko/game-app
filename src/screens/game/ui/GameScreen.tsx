@@ -10,17 +10,15 @@ import { Title } from '@shared/ui/title';
 import { styles } from './GameScreen.styles';
 
 export const GameScreen = () => {
-  const { enteredNumber } = useGame();
+  const { enteredNumber, setGameIsOver } = useGame();
   const { currentGuess, processNextGuess, isWin } =
     useComputerGuess(enteredNumber);
 
   useEffect(() => {
     if (isWin) {
-      Alert.alert('HURRAY!', `Your number was guessed, it's ${currentGuess}!`, [
-        { text: 'Congratulations!', style: 'destructive' },
-      ]);
+      setGameIsOver(true);
     }
-  }, [isWin, currentGuess]);
+  }, [isWin]);
 
   const handleGuess = (direction: GuessDirection) => {
     const result = processNextGuess(direction);

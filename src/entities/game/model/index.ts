@@ -1,2 +1,2 @@
-export { GameProvider, useGame } from './game.context';
+export { useGame } from './store';
 export type { GuessDirection } from './types';
