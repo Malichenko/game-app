@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 
-import { Alert, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import { type GuessDirection, useGame } from '@entities/game';
 import { GuessControls, useComputerGuess } from '@features/computer-guess';
+import theme from '@shared/config/theme';
 import { NumberCard } from '@shared/ui/number-card';
 import { Title } from '@shared/ui/title';
-
-import { styles } from './GameScreen.styles';
 
 export const GameScreen = () => {
   const { enteredNumber, setGameIsOver } = useGame();
@@ -44,3 +43,11 @@ export const GameScreen = () => {
     </View>
   );
 };
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: theme.spacing.x3,
+    gap: theme.spacing.x4,
+  },
+});
