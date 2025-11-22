@@ -1,10 +1,9 @@
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { useGame } from '@entities/game';
+import theme from '@shared/config/theme';
 import { Title } from '@shared/ui/title';
 import { NumberInputForm } from '@widgets/number-input';
-
-import { styles } from './GameStart.styles';
 
 const GameStartScreen = (): React.ReactElement => {
   const { pickNumber } = useGame();
@@ -23,3 +22,11 @@ const GameStartScreen = (): React.ReactElement => {
 };
 
 export default GameStartScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: theme.spacing.x4,
+    gap: theme.spacing.x16,
+  },
+});

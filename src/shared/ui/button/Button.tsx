@@ -31,7 +31,7 @@ export const Button: FC<ButtonProps> = ({
       onPress={onPress}
     >
       <Animated.View style={[styles.button, dynamicButtonStyle, { opacity }]}>
-        <Text style={dynamicTextStyle}>{children}</Text>
+        <Text style={[styles.text, dynamicTextStyle]}>{children}</Text>
       </Animated.View>
     </Pressable>
   );
