@@ -18,7 +18,7 @@ export const InstructionText: FC<InstructionTextProps> = ({
 const styles = StyleSheet.create({
   instructionText: {
     fontSize: theme.fontSize.xl,
-    fontWeight: 'bold',
+    fontFamily: 'open-sans-bold',
     color: theme.palette.accent[50],
   },
 });

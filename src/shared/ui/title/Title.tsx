@@ -15,7 +15,7 @@ export const Title: FC<TitleProps> = ({ children, style }) => {
 const styles = StyleSheet.create({
   title: {
     fontSize: theme.fontSize['2xl'],
-    fontWeight: 'bold',
+    fontFamily: 'open-sans-bold',
     color: theme.palette.neutral[10],
     textAlign: 'center',
     borderWidth: 2,

@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import type { GuessDirection } from '@entities/game';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import theme from '@shared/config/theme';
 import { Button } from '@shared/ui/button';
 import { Card } from '@shared/ui/card';
@@ -18,11 +19,15 @@ export const GuessControls = ({ onGuess }: GuessControlsProps) => {
 
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <Button onPress={onGuess.bind(this, 'higher')}>+</Button>
+          <Button onPress={onGuess.bind(this, 'higher')}>
+            <Ionicons name="add" size={24} color="black" />
+          </Button>
         </View>
 
         <View style={styles.buttonContainer}>
-          <Button onPress={onGuess.bind(this, 'lower')}>-</Button>
+          <Button onPress={onGuess.bind(this, 'lower')}>
+            <Ionicons name="remove" size={24} color="black" />
+          </Button>
         </View>
       </View>
     </Card>

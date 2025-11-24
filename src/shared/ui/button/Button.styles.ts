@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: theme.fontSize.base,
-    fontWeight: 'bold',
+    fontFamily: 'open-sans-bold',
   },
   buttonPrimary: {
     backgroundColor: theme.palette.primary[60],
