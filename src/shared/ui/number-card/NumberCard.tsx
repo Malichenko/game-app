@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     borderWidth: theme.spacing.x1,
     borderColor: theme.palette.accent[50],
     padding: theme.spacing.x6,
-    margin: theme.spacing.x6,
     borderRadius: theme.spacing.x2,
     alignItems: 'center',
     justifyContent: 'center',

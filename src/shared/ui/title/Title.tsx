@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     color: theme.palette.neutral[10],
     textAlign: 'center',
     borderWidth: 2,
+    borderRadius: theme.spacing.x2,
     borderColor: theme.palette.neutral[10],
     padding: theme.spacing.x3,
   },

@@ -26,7 +26,8 @@ export default GameStartScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: theme.spacing.x4,
-    gap: theme.spacing.x16,
+    paddingHorizontal: theme.spacing.x4,
+    paddingVertical: theme.spacing.x25,
+    gap: theme.spacing.x20,
   },
 });

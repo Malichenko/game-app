@@ -4,6 +4,8 @@ import { Alert, Platform, StyleSheet, TextInput, View } from 'react-native';
 
 import theme from '@shared/config/theme';
 import { Button } from '@shared/ui/button';
+import { Card } from '@shared/ui/card';
+import { InstructionText } from '@shared/ui/instruction-text';
 
 type NumberInputFormProps = {
   onConfirm: (number: number) => void;
@@ -52,7 +54,11 @@ export const NumberInputForm = ({
   };
 
   return (
-    <View style={styles.inputContainer}>
+    <Card>
+      <InstructionText>
+        Enter a number between {min} and {max}:
+      </InstructionText>
+
       <TextInput
         style={styles.inputNumber}
         maxLength={maxLength}
@@ -73,24 +79,12 @@ export const NumberInputForm = ({
           <Button onPress={confirmInputHandler}>Confirm</Button>
         </View>
       </View>
-    </View>
+    </Card>
   );
 };
 
 export const styles = StyleSheet.create({
-  inputContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.palette.primary[90],
-    padding: theme.spacing.x4,
-    borderRadius: 8,
-    elevation: 12,
-    shadowColor: theme.palette.shadow.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    gap: theme.spacing.x4,
-  },
+  tipText: {},
   inputNumber: {
     height: 50,
     width: 50,
