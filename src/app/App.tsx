@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
 import { ImageBackground, StyleSheet } from 'react-native';
 
-import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
 import theme from '@shared/config/theme';
@@ -10,15 +12,19 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import { Router } from './Router';
 
+SplashScreen.preventAutoHideAsync();
+
 export const App = (): React.ReactElement => {
   const [fontsLoaded] = useFonts({
     'open-sans': require('@shared/assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('@shared/assets/fonts/OpenSans-Bold.ttf'),
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
 
   return (
     <SafeAreaProvider>
@@ -28,7 +34,7 @@ export const App = (): React.ReactElement => {
         style={[styles.fullScreen]}
       >
         <ImageBackground
-          source={require('@shared/assets/background.png')}
+          source={require('@shared/assets/images/background.png')}
           style={[styles.fullScreen]}
           resizeMode="cover"
           imageStyle={styles.backgroundImage}

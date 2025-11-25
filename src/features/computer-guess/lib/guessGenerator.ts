@@ -17,6 +17,7 @@ export function* guessGenerator(
   while (maxBoundary > minBoundary) {
     stepCounter++;
     const guess = generateRandomNumber(minBoundary, maxBoundary);
+
     const direction = yield {
       guess,
       stepCounter,

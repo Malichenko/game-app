@@ -20,13 +20,13 @@ export const GuessControls = ({ onGuess }: GuessControlsProps) => {
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
           <Button onPress={onGuess.bind(this, 'higher')}>
-            <Ionicons name="add" size={24} color="black" />
+            <Ionicons name="add" size={24} />
           </Button>
         </View>
 
         <View style={styles.buttonContainer}>
           <Button onPress={onGuess.bind(this, 'lower')}>
-            <Ionicons name="remove" size={24} color="black" />
+            <Ionicons name="remove" size={24} />
           </Button>
         </View>
       </View>

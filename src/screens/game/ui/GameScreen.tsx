@@ -1,23 +1,30 @@
 import { useEffect } from 'react';
 
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert } from 'react-native';
 
 import { type GuessDirection, useGame } from '@entities/game';
 import { GuessControls, useComputerGuess } from '@features/computer-guess';
-import theme from '@shared/config/theme';
 import { NumberCard } from '@shared/ui/number-card';
+import { ScreenLayout } from '@shared/ui/screen-layout/ScreenLayout';
 import { Title } from '@shared/ui/title';
+import { GameLogger } from '@widgets/game-logger';
 
 export const GameScreen = () => {
-  const { enteredNumber, setGameIsOver } = useGame();
-  const { currentGuess, processNextGuess, isWin } =
+  const { enteredNumber, setGameIsOver, setRoundsToGuess } = useGame();
+  const { guess, stepCounter, guessHistory, processNextGuess, isWin } =
     useComputerGuess(enteredNumber);
 
+  // TODO: think how to handle this login in more elegant way
   useEffect(() => {
     if (isWin) {
       setGameIsOver(true);
     }
   }, [isWin]);
+
+  useEffect(() => {
+    setRoundsToGuess(stepCounter);
+  }, [stepCounter]);
+  //* end of TODO
 
   const handleGuess = (direction: GuessDirection) => {
     const result = processNextGuess(direction);
@@ -30,24 +37,14 @@ export const GameScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScreenLayout>
       <Title>Opponent's Guess</Title>
 
-      <NumberCard>{currentGuess}</NumberCard>
+      <NumberCard>{guess}</NumberCard>
 
       <GuessControls onGuess={handleGuess} />
 
-      <View>
-        <Text>LOG ROUNDS</Text>
-      </View>
-    </View>
+      <GameLogger guessHistory={guessHistory} />
+    </ScreenLayout>
   );
 };
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: theme.spacing.x3,
-    gap: theme.spacing.x4,
-  },
-});
