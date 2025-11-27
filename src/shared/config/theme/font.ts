@@ -1,17 +1,23 @@
+import { Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+const DIMENSION_BASE = 27.5;
+const FONT_SIZE_BASE = Math.round(width / DIMENSION_BASE);
+
 export const fontSize = {
-  xs: 12, // 0.75rem
-  sm: 14, // 0.875rem
-  base: 16, // 1rem
-  lg: 18, // 1.125rem
-  xl: 20, // 1.25rem
-  '2xl': 24, // 1.5rem
-  '3xl': 30, // 1.875rem
-  '4xl': 36, // 2.25rem
-  '5xl': 48, // 3rem
-  '6xl': 60, // 3.75rem
-  '7xl': 72, // 4.5rem
-  '8xl': 96, // 6rem
-  '9xl': 128, // 8rem
+  xs: FONT_SIZE_BASE * 0.75,
+  sm: FONT_SIZE_BASE * 0.875,
+  base: FONT_SIZE_BASE * 1,
+  lg: FONT_SIZE_BASE * 1.125,
+  xl: FONT_SIZE_BASE * 1.25,
+  '2xl': FONT_SIZE_BASE * 1.5,
+  '3xl': FONT_SIZE_BASE * 1.875,
+  '4xl': FONT_SIZE_BASE * 2.25,
+  '5xl': FONT_SIZE_BASE * 3,
+  '6xl': FONT_SIZE_BASE * 3.75,
+  '7xl': FONT_SIZE_BASE * 4.5,
+  '8xl': FONT_SIZE_BASE * 6,
+  '9xl': FONT_SIZE_BASE * 8,
 } as const;
 
 export const lineHeight = {
@@ -21,12 +27,4 @@ export const lineHeight = {
   normal: 1.5, // line-height: 1.5
   relaxed: 1.625, // line-height: 1.625
   loose: 2, // line-height: 2
-  3: 12, // 0.75rem
-  4: 16, // 1rem
-  5: 20, // 1.25rem
-  6: 24, // 1.5rem
-  7: 28, // 1.75rem
-  8: 32, // 2rem
-  9: 36, // 2.25rem
-  10: 40, // 2.5rem
 } as const;

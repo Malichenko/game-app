@@ -4,7 +4,7 @@ import theme from '@shared/config/theme';
 
 export const styles = StyleSheet.create({
   button: {
-    borderRadius: 28,
+    borderRadius: theme.spacing.x7,
     paddingVertical: theme.spacing.x4,
     paddingHorizontal: theme.spacing.x6,
     justifyContent: 'center',

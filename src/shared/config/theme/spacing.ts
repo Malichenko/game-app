@@ -1,20 +1,24 @@
-const SPACING_BASE = 4;
+import { Dimensions } from 'react-native';
 
 type SpacingKey = `x${number}`;
 type SpacingTarget = Record<SpacingKey, number>;
 
-const spacingBase = {
-  x1: 4, // 1×base
-  x2: 8, // 2×base
-  x3: 12, // 3×base
-  x4: 16, // 4×base
-  x5: 20, // 5×base
-  x6: 24, // 6×base
-  x7: 28, // 7×base
-  x8: 32, // 8×base
-  x9: 36, // 9×base
-  x10: 40, // 10×base
-} satisfies SpacingTarget;
+const createSpacingBase = (width: number) => {
+  const SPACING_BASE = width / 100;
+
+  return {
+    x1: SPACING_BASE * 1,
+    x2: SPACING_BASE * 2,
+    x3: SPACING_BASE * 3,
+    x4: SPACING_BASE * 4,
+    x5: SPACING_BASE * 5,
+    x6: SPACING_BASE * 6,
+    x7: SPACING_BASE * 7,
+    x8: SPACING_BASE * 8,
+    x9: SPACING_BASE * 9,
+    x10: SPACING_BASE * 10,
+  } satisfies SpacingTarget;
+};
 
 const isValidSpacingKey = (key: string): key is SpacingKey => {
   return key.startsWith('x') && key.length > 1;
@@ -35,32 +39,57 @@ const extractNumberFromKey = (key: string): number | null => {
   return parsedNum;
 };
 
-const spacingHandler: ProxyHandler<typeof spacingBase> = {
-  get(target, prop, receiver) {
-    if (typeof prop === 'symbol') {
-      return Reflect.get(target, prop, receiver);
-    }
-
-    if (Reflect.has(target, prop)) {
-      return Reflect.get(target, prop, receiver);
-    }
-
-    if (!isValidSpacingKey(prop)) {
-      throw new Error(
-        `Invalid spacing key format: "${prop}". Expected format: "x{positiveNumber}"`,
-      );
-    }
-
-    const multiplier = extractNumberFromKey(prop);
-
-    if (multiplier === null) {
-      throw new Error(
-        `Invalid spacing key: "${prop}". The number part must be a positive integer.`,
-      );
-    }
-
-    return multiplier * SPACING_BASE;
-  },
+const isBuiltInProperty = (prop: string): boolean => {
+  return (
+    prop in Object.prototype ||
+    prop === 'constructor' ||
+    prop === '$$typeof' ||
+    prop.startsWith('$$') ||
+    prop.startsWith('__')
+  );
 };
+
+const createSpacingHandler = (spacingBaseValue: number) => {
+  const SPACING_BASE = spacingBaseValue;
+
+  const handler: ProxyHandler<ReturnType<typeof createSpacingBase>> = {
+    get(target, prop, receiver) {
+      if (typeof prop === 'symbol') {
+        return Reflect.get(target, prop, receiver);
+      }
+
+      if (Reflect.has(target, prop)) {
+        return Reflect.get(target, prop, receiver);
+      }
+
+      if (isBuiltInProperty(prop)) {
+        return Reflect.get(target, prop, receiver);
+      }
+
+      if (!isValidSpacingKey(prop)) {
+        throw new Error(
+          `Invalid spacing key format: "${prop}". Expected format: "x{positiveNumber}"`,
+        );
+      }
+
+      const multiplier = extractNumberFromKey(prop);
+
+      if (multiplier === null) {
+        throw new Error(
+          `Invalid spacing key: "${prop}". The number part must be a positive integer.`,
+        );
+      }
+
+      return multiplier * SPACING_BASE;
+    },
+  };
+
+  return handler;
+};
+
+const { width } = Dimensions.get('window');
+const spacingBase = createSpacingBase(width);
+const SPACING_BASE = width / 100;
+const spacingHandler = createSpacingHandler(SPACING_BASE);
 
 export const spacing: SpacingTarget = new Proxy(spacingBase, spacingHandler);
