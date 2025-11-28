@@ -1,0 +1,1 @@
+export { GameOverWidget } from './GameOverWidget';

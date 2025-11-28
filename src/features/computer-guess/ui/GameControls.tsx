@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-import { useWindowDimensions } from 'react-native';
-
 import { type GuessDirection } from '@entities/game';
+import { useScreenOrientation } from '@shared/lib/hooks/useScreenOrientation';
 
 import { GameControlsLandscape } from './GameControls.landscape';
 import { GameControlsPortrait } from './GameControls.portrait';
@@ -13,10 +12,9 @@ interface Props {
 }
 
 export const GameControls: FC<Props> = ({ guess, onGuess }) => {
-  const { width, height } = useWindowDimensions();
-  const isPortrait = width < height;
+  const { portrait } = useScreenOrientation();
 
-  return isPortrait ? (
+  return portrait ? (
     <GameControlsPortrait guess={guess} onGuess={onGuess} />
   ) : (
     <GameControlsLandscape guess={guess} onGuess={onGuess} />
