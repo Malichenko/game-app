@@ -1,12 +1,15 @@
 import type { FC, PropsWithChildren } from 'react';
 
 import { StyleSheet, Text, View } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 
 import theme from '@shared/config/theme';
 
-export const NumberCard: FC<PropsWithChildren> = ({ children }) => {
+export const NumberCard: FC<
+  PropsWithChildren<{ style?: StyleProp<ViewStyle> }>
+> = ({ children, style }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Text style={styles.numberText}>{children}</Text>
     </View>
   );

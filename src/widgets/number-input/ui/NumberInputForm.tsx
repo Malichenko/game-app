@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
-import { Alert, Platform, StyleSheet, TextInput, View } from 'react-native';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  TextInput,
+  View,
+} from 'react-native';
 
 import theme from '@shared/config/theme';
 import { Button } from '@shared/ui/button';
@@ -54,37 +61,41 @@ export const NumberInputForm = ({
   };
 
   return (
-    <Card>
-      <InstructionText>
-        Enter a number between {min} and {max}:
-      </InstructionText>
+    <KeyboardAvoidingView
+      behavior={'position'}
+      keyboardVerticalOffset={theme.spacing.x2}
+    >
+      <Card>
+        <InstructionText>
+          Enter a number between {min} and {max}:
+        </InstructionText>
 
-      <TextInput
-        style={styles.inputNumber}
-        maxLength={maxLength}
-        keyboardType="number-pad"
-        autoCorrect={false}
-        value={enteredNumber}
-        onChangeText={numberInputHandler}
-        placeholder={placeholder}
-        placeholderTextColor={theme.palette.accent[30]}
-      />
+        <TextInput
+          style={styles.inputNumber}
+          maxLength={maxLength}
+          keyboardType="number-pad"
+          autoCorrect={false}
+          value={enteredNumber}
+          onChangeText={numberInputHandler}
+          placeholder={placeholder}
+          placeholderTextColor={theme.palette.accent[30]}
+        />
 
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <Button onPress={resetInputHandler}>Reset</Button>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <Button onPress={resetInputHandler}>Reset</Button>
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <Button onPress={confirmInputHandler}>Confirm</Button>
+          </View>
         </View>
-
-        <View style={styles.buttonContainer}>
-          <Button onPress={confirmInputHandler}>Confirm</Button>
-        </View>
-      </View>
-    </Card>
+      </Card>
+    </KeyboardAvoidingView>
   );
 };
 
 export const styles = StyleSheet.create({
-  tipText: {},
   inputNumber: {
     height: 50,
     width: 50,

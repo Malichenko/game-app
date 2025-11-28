@@ -1,1 +1,1 @@
-export { GuessControls } from './GuessControls';
+export { GameControls } from './GameControls';

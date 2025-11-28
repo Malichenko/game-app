@@ -1,36 +1,21 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 
-import type { GuessDirection } from '@entities/game';
+import {
+  GAME_MAX_NUMBER,
+  GAME_MIN_NUMBER,
+  type GuessDirection,
+} from '@entities/game';
 
+import { createInitialGuess } from '../lib/createInitialGuess';
 import { guessGenerator } from '../lib/guessGenerator';
 import { isMoveIllegal } from '../lib/isMoveIllegal';
+import { GuessResult, GuessState } from './types';
 
-const MIN_NUMBER = 1;
-const MAX_NUMBER = 100;
-
-type ProcessGuessResult =
-  | { success: true }
-  | { success: false; error: 'illegal_move' | 'generator_exhausted' };
-
-type GuessState = {
-  guess: number;
-  stepCounter: number;
-  guessHistory: number[];
-};
-
-const createInitialGuess = (
-  generator: ReturnType<typeof guessGenerator>,
-): GuessState => {
-  const initial = generator.next();
-  const guess = initial.value?.guess ?? 0;
-  return {
-    guess,
-    stepCounter: initial.value?.stepCounter ?? 0,
-    guessHistory: [guess],
-  };
-};
-
-const boundedGuessGenerator = guessGenerator.bind(null, MIN_NUMBER, MAX_NUMBER);
+const boundedGuessGenerator = guessGenerator.bind(
+  null,
+  GAME_MIN_NUMBER,
+  GAME_MAX_NUMBER,
+);
 
 export const useComputerGuess = (enteredNumber: number) => {
   const generatorRef = useRef(boundedGuessGenerator(enteredNumber));
@@ -40,7 +25,7 @@ export const useComputerGuess = (enteredNumber: number) => {
   );
 
   const processNextGuess = useCallback(
-    (direction: GuessDirection): ProcessGuessResult => {
+    (direction: GuessDirection): GuessResult => {
       if (!generatorRef.current) {
         return { success: false, error: 'generator_exhausted' };
       }

@@ -1,5 +1,4 @@
-import { useGame } from '@entities/game';
-import theme from '@shared/config/theme';
+import { GAME_MAX_NUMBER, GAME_MIN_NUMBER, useGame } from '@entities/game';
 import { ScreenLayout } from '@shared/ui/screen-layout';
 import { Title } from '@shared/ui/title';
 import { NumberInputForm } from '@widgets/number-input';
@@ -12,16 +11,14 @@ const GameStartScreen = (): React.ReactElement => {
   };
 
   return (
-    <ScreenLayout
-      style={{
-        paddingHorizontal: theme.spacing.x4,
-        paddingVertical: theme.spacing.x25,
-        gap: theme.spacing.x20,
-      }}
-    >
+    <ScreenLayout>
       <Title>Guess My Number</Title>
 
-      <NumberInputForm onConfirm={handleConfirm} min={1} max={99} />
+      <NumberInputForm
+        onConfirm={handleConfirm}
+        min={GAME_MIN_NUMBER}
+        max={GAME_MAX_NUMBER}
+      />
     </ScreenLayout>
   );
 };

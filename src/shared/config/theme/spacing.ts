@@ -1,22 +1,20 @@
-import { Dimensions } from 'react-native';
+import { getBasesize } from './utils';
 
 type SpacingKey = `x${number}`;
 type SpacingTarget = Record<SpacingKey, number>;
 
-const createSpacingBase = (width: number) => {
-  const SPACING_BASE = width / 100;
-
+const createSpacingBase = (spacingBase: number) => {
   return {
-    x1: SPACING_BASE * 1,
-    x2: SPACING_BASE * 2,
-    x3: SPACING_BASE * 3,
-    x4: SPACING_BASE * 4,
-    x5: SPACING_BASE * 5,
-    x6: SPACING_BASE * 6,
-    x7: SPACING_BASE * 7,
-    x8: SPACING_BASE * 8,
-    x9: SPACING_BASE * 9,
-    x10: SPACING_BASE * 10,
+    x1: spacingBase * 1,
+    x2: spacingBase * 2,
+    x3: spacingBase * 3,
+    x4: spacingBase * 4,
+    x5: spacingBase * 5,
+    x6: spacingBase * 6,
+    x7: spacingBase * 7,
+    x8: spacingBase * 8,
+    x9: spacingBase * 9,
+    x10: spacingBase * 10,
   } satisfies SpacingTarget;
 };
 
@@ -87,9 +85,8 @@ const createSpacingHandler = (spacingBaseValue: number) => {
   return handler;
 };
 
-const { width } = Dimensions.get('window');
-const spacingBase = createSpacingBase(width);
-const SPACING_BASE = width / 100;
+const SPACING_BASE = getBasesize() / 100;
+const spacingBase = createSpacingBase(SPACING_BASE);
 const spacingHandler = createSpacingHandler(SPACING_BASE);
 
 export const spacing: SpacingTarget = new Proxy(spacingBase, spacingHandler);

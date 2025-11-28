@@ -1,8 +1,7 @@
-import { Dimensions } from 'react-native';
+import { getBasesize } from './utils';
 
-const { width } = Dimensions.get('window');
-const DIMENSION_BASE = 27.5;
-const FONT_SIZE_BASE = Math.round(width / DIMENSION_BASE);
+const DIMENSION_BASE = getBasesize();
+const FONT_SIZE_BASE = Math.round(DIMENSION_BASE / 27.5);
 
 export const fontSize = {
   xs: FONT_SIZE_BASE * 0.75,

@@ -10,6 +10,7 @@ export const Button: FC<ButtonProps> = ({
   onPress,
   children,
   variant = 'primary',
+  style,
 }) => {
   const opacity = useRef(new Animated.Value(1)).current;
 
@@ -30,7 +31,9 @@ export const Button: FC<ButtonProps> = ({
       onPressOut={fadeToValue(1)}
       onPress={onPress}
     >
-      <Animated.View style={[styles.button, dynamicButtonStyle, { opacity }]}>
+      <Animated.View
+        style={[styles.button, dynamicButtonStyle, { opacity }, style]}
+      >
         <Text style={[styles.text, dynamicTextStyle]}>{children}</Text>
       </Animated.View>
     </Pressable>
