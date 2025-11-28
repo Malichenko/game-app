@@ -7,13 +7,20 @@ import { LoggerItem } from './components/logger-item';
 const getKey = (item: number, index: number) => `${item}::${index}`;
 
 export const GameLogger = ({ guessHistory }: { guessHistory: number[] }) => {
+  const reversedGuessHistory = [...guessHistory].reverse();
+
   return (
     <FlatList
       contentContainerStyle={styles.list}
-      data={guessHistory}
-      renderItem={({ item, index }) => (
-        <LoggerItem roundNumber={index + 1} guess={item} />
-      )}
+      data={reversedGuessHistory}
+      renderItem={({ item, index }) => {
+        return (
+          <LoggerItem
+            roundNumber={reversedGuessHistory.length - index}
+            guess={item}
+          />
+        );
+      }}
       keyExtractor={getKey}
       showsVerticalScrollIndicator={false}
     />
