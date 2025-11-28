@@ -6,6 +6,7 @@ export const GameScreen = () => {
   return (
     <ScreenLayout>
       <Title>Opponent&apos;s Guess</Title>
+
       <GameSession />
     </ScreenLayout>
   );

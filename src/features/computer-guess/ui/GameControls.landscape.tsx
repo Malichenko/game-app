@@ -1,9 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { GuessDirection } from '@entities/game';
 import { Ionicons } from '@expo/vector-icons';
 import theme from '@shared/config/theme';
 import { Button } from '@shared/ui/button';
+import { Card } from '@shared/ui/card';
 import { NumberCard } from '@shared/ui/number-card';
 
 export const GameControlsLandscape = ({
@@ -14,7 +15,7 @@ export const GameControlsLandscape = ({
   onGuess: (direction: GuessDirection) => void;
 }) => {
   return (
-    <View style={styles.container}>
+    <Card style={styles.container}>
       <Button onPress={() => onGuess('higher')} style={styles.button}>
         <Ionicons name="add" size={24} />
       </Button>
@@ -22,7 +23,7 @@ export const GameControlsLandscape = ({
       <Button onPress={() => onGuess('lower')} style={styles.button}>
         <Ionicons name="remove" size={24} />
       </Button>
-    </View>
+    </Card>
   );
 };
 
@@ -34,11 +35,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: theme.spacing.x2,
-    backgroundColor: theme.palette.accent[10],
-    padding: theme.spacing.x4,
-    borderRadius: theme.spacing.x5,
-    borderWidth: 2,
-    borderColor: theme.palette.primary[80],
+    paddingVertical: theme.spacing.x6,
   },
   numberCard: {
     width: '30%',

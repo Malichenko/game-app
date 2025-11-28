@@ -38,6 +38,7 @@ export const GameSession = () => {
   return (
     <>
       <GameControls guess={guess} onGuess={handleGuess} />
+
       <GameLogger guessHistory={guessHistory} />
     </>
   );
