@@ -40,6 +40,7 @@ export const GameOverPortrait: FC<GameOverProps> = ({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    gap: theme.spacing.x4,
   },
   imageContainer: {
     width: theme.spacing.x76,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     color: theme.palette.neutral[100],
     textAlign: 'center',
-    marginTop: theme.spacing.x9,
+    marginTop: theme.spacing.x5,
   },
   highlight: {
     fontFamily: 'open-sans-bold',

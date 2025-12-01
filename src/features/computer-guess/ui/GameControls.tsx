@@ -12,11 +12,12 @@ interface Props {
 }
 
 export const GameControls: FC<Props> = ({ guess, onGuess }) => {
-  const { portrait } = useScreenOrientation();
+  const { portrait, landscape } = useScreenOrientation();
 
-  return portrait ? (
-    <GameControlsPortrait guess={guess} onGuess={onGuess} />
-  ) : (
-    <GameControlsLandscape guess={guess} onGuess={onGuess} />
+  return (
+    <>
+      {portrait && <GameControlsPortrait guess={guess} onGuess={onGuess} />}
+      {landscape && <GameControlsLandscape guess={guess} onGuess={onGuess} />}
+    </>
   );
 };
